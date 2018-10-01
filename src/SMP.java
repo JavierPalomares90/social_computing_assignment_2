@@ -21,7 +21,30 @@ public class SMP {
 
 	public static int[] SMP(int[][][] weights, String direction)
 	{
+		int[][] men;
+		int[][] women;
+		if(MEN.equals(direction))
+		{
+			men = weights[0];
+			women = weights[1];
+		}
+		else if(WOMEN.equals(direction))
+		{
+			men = weights[1];
+			women = weights[0];
+		}
+		else
+		{
+			System.err.println("Please pick m or w for optimal direction");
+			return null;
+		}
+		return SMP(men,women);
+	}
 
+	private static int[] SMP(int[][] men, int[][] women)
+	{
+
+		//TODO: Complete implementaiton
 		return null;
 	}
 }
