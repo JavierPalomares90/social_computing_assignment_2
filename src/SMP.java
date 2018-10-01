@@ -1,3 +1,8 @@
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+
 public class SMP {
 	private static String MEN = "M";
 	private static String WOMEN = "W";
@@ -43,8 +48,42 @@ public class SMP {
 
 	private static int[] SMP(int[][] men, int[][] women)
 	{
+		Queue<Integer> freeMen = new LinkedList<>();
+		// Add all men to the freeList
+		int n = men.length;
+		for(int i = 0; i < n; i ++)
+		{
+			freeMen.add(i);
+		}
+		// matrix of proposals
+		boolean[][] proposals = new boolean[n][n];
+		// Map of engagements. The key is the woman.
+		Map<Integer,Integer> engagements = new HashMap<>();
+		while (freeMen.isEmpty() == false)
+		{
+			int man = freeMen.remove();
+			int woman = getPreferredWoman(man,proposals);
+			Integer fiance = engagements.get(woman);
+			if(fiance == null)
+			{
+				// The woman is free. So now the man and woman are engaged
+				engagements.put(woman,man);
+			}else
+			{
+				// TODO: Finish implementation
+
+			}
+
+		}
 
 		//TODO: Complete implementaiton
 		return null;
+	}
+
+	private static int getPreferredWoman(int man, boolean[][] proposals)
+	{
+		// TODO: Complete implementation
+		return -1;
+
 	}
 }
