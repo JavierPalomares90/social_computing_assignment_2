@@ -17,7 +17,7 @@ public class Utils {
 		return  -1;
 
 	}
-	public static int[][] readInputFile(String inputFile)
+	public static int[][][] readInputFile(String inputFile)
 	{
 		try
 		{
@@ -26,9 +26,12 @@ public class Utils {
 			BufferedReader br = new BufferedReader(fileReader);
 			String line;
 			int i = -1;
-			int[][] weights = null;
+			// Initialize the matrix
+			int[][][] weights = new int[2][][];
+			int[][] menPrefs = null;
+			int[][] womenPrefs = null;
 			// number of rows and columns
-			int n;
+			int n = 0;
 			while (true)
 			{
 				line = br.readLine();
@@ -40,19 +43,30 @@ public class Utils {
 				{
 					// reading first line
 					n = getFirstInteger(line);
+					menPrefs = new int[n][n];
+					womenPrefs = new int[n][n];
+					weights[0] = menPrefs;
+					weights[1] = womenPrefs;
 					if(n < 0)
 					{
 						return null;
 					}
-					// Initialize the matrix
-					weights = new int[n][n];
+				// Read the men preferences
+				}else if (0 <= i && i < n)
+				{
+					// Split line on whitespace
+					String[] w_i = line.split("\\s+");
+					for(int j = 0; j < w_i.length; j++)
+					{
+						menPrefs[i][j] = Integer.parseInt(w_i[j]);
+					}
 				}else
 				{
 					// Split line on whitespace
 					String[] w_i = line.split("\\s+");
 					for(int j = 0; j < w_i.length; j++)
 					{
-						weights[i][j] = Integer.parseInt(w_i[j]);
+						womenPrefs[i][j] = Integer.parseInt(w_i[j]);
 					}
 				}
 				i++;
