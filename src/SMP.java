@@ -28,7 +28,7 @@ public class SMP {
 		for(Integer woman : women)
 		{
 		    Integer man = map.get(woman);
-		    System.out.println("(" + man+1 + "," + woman+1 + ")");
+		    System.out.println("(" + (man+1) + "," + (woman+1) + ")");
 		}
 	}
 
