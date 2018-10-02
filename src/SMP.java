@@ -21,10 +21,17 @@ public class SMP {
 		{
 			System.err.println("Input file is malformed");
 		}
-		SMP(weights,direction);
+		Map<Integer,Integer> engagements = SMP(weights,direction);
+		printEngagements(engagements);
 	}
 
-	public static int[] SMP(int[][][] weights, String direction)
+	private static void printEngagements(Map<Integer,Integer> map)
+	{
+		//TODO: Complete implementation
+
+	}
+
+	public static Map<Integer,Integer> SMP(int[][][] weights, String direction)
 	{
 		int[][] men;
 		int[][] women;
@@ -46,7 +53,7 @@ public class SMP {
 		return SMP(men,women);
 	}
 
-	private static int[] SMP(int[][] men, int[][] women)
+	private static Map<Integer,Integer> SMP(int[][] men, int[][] women)
 	{
 		Queue<Integer> freeMen = new LinkedList<>();
 		// Add all men to the freeList
@@ -55,7 +62,7 @@ public class SMP {
 		{
 			freeMen.add(i);
 		}
-		// matrix of proposals
+		// matrix of proposals that have been made
 		boolean[][] proposals = new boolean[n][n];
 		// Map of engagements. The key is the woman.
 		Map<Integer,Integer> engagements = new HashMap<>();
@@ -64,20 +71,35 @@ public class SMP {
 			int man = freeMen.remove();
 			int woman = getPreferredWoman(man,proposals);
 			Integer fiance = engagements.get(woman);
+			proposals[man][woman] = true;
 			if(fiance == null)
 			{
 				// The woman is free. So now the man and woman are engaged
 				engagements.put(woman,man);
 			}else
 			{
-				// TODO: Finish implementation
-
+				boolean keepFiance = keepFiance(women,woman,fiance,man);
+				if(keepFiance == false)
+				{
+					// switch the engagements
+					engagements.put(woman,man);
+					// add old fiance to queue
+					freeMen.add(fiance);
+				}else
+				{
+					// add the man back to the queue
+					freeMen.add(man);
+				}
 			}
-
 		}
+		return engagements;
 
-		//TODO: Complete implementaiton
-		return null;
+	}
+
+	private static boolean keepFiance(int[][] women, int woman, int fiance, int man)
+	{
+		// TODO: Complete implementation
+		return false;
 	}
 
 	private static int getPreferredWoman(int man, boolean[][] proposals)
