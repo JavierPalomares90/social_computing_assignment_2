@@ -56,17 +56,18 @@ public class Utils {
 				{
 					// Split line on whitespace
 					String[] w_i = line.split("\\s+");
-					for(int j = 0; j < w_i.length; j++)
+					for(int j = 0; j < n ; j++)
 					{
-						menPrefs[i][j] = Integer.parseInt(w_i[j]);
+						// subtract minus 1 to make everything zero indexed
+						menPrefs[i][j] = Integer.parseInt(w_i[j]) - 1;
 					}
 				}else
 				{
 					// Split line on whitespace
 					String[] w_i = line.split("\\s+");
-					for(int j = 0; j < w_i.length; j++)
+					for(int j = 0; j < n ; j++)
 					{
-						womenPrefs[i][j] = Integer.parseInt(w_i[j]);
+						womenPrefs[i-n][j] = Integer.parseInt(w_i[j]) - 1;
 					}
 				}
 				i++;

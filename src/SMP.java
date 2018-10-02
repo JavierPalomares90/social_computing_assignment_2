@@ -1,11 +1,8 @@
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 public class SMP {
-	private static String MEN = "M";
-	private static String WOMEN = "W";
+	private static String MEN = "m";
+	private static String WOMEN = "w";
 
 	public static void main(String[] args)
 	{
@@ -27,14 +24,18 @@ public class SMP {
 
 	private static void printEngagements(Map<Integer,Integer> map)
 	{
-		//TODO: Complete implementation
-
+		Set<Integer> women = map.keySet();
+		for(Integer woman : women)
+		{
+		    Integer man = map.get(woman);
+		    System.out.println("(" + man+1 + "," + woman+1 + ")");
+		}
 	}
 
 	public static Map<Integer,Integer> SMP(int[][][] weights, String direction)
 	{
-		int[][] men;
-		int[][] women;
+		int[][] men = null;
+		int[][] women = null;
 		if(MEN.equals(direction))
 		{
 			men = weights[0];
@@ -48,7 +49,7 @@ public class SMP {
 		else
 		{
 			System.err.println("Please pick m or w for optimal direction");
-			return null;
+			System.exit(1);
 		}
 		return SMP(men,women);
 	}
@@ -69,7 +70,7 @@ public class SMP {
 		while (freeMen.isEmpty() == false)
 		{
 			int man = freeMen.remove();
-			int woman = getPreferredWoman(man,proposals);
+			int woman = getPreferredWoman(men,man,proposals);
 			Integer fiance = engagements.get(woman);
 			proposals[man][woman] = true;
 			if(fiance == null)
@@ -98,14 +99,38 @@ public class SMP {
 
 	private static boolean keepFiance(int[][] women, int woman, int fiance, int man)
 	{
-		// TODO: Complete implementation
+        int[] preferences = women[woman];
+        int n = preferences.length;
+        for (int i = 0; i < n; i++)
+		{
+			int j = preferences[i];
+			// return true if we see the fiance first
+			if(j == fiance)
+			{
+				return true;
+			}
+			// return false if we see the man first
+			else if (j == man)
+			{
+				return false;
+			}
+		}
 		return false;
 	}
 
-	private static int getPreferredWoman(int man, boolean[][] proposals)
+	private static int getPreferredWoman(int[][] men, int man, boolean[][] proposals)
 	{
-		// TODO: Complete implementation
+		int[] preferences = men[man];
+		int n = preferences.length;
+		for (int i = 0; i < n; i++)
+		{
+			int woman = preferences[i];
+			// return the first woman the man has not proposed to
+			if(proposals[man][woman] == false)
+			{
+				return woman;
+			}
+		}
 		return -1;
-
 	}
 }
