@@ -1,3 +1,5 @@
+package main.java.SMP;
+
 import java.util.*;
 
 public class SMP {
@@ -8,7 +10,7 @@ public class SMP {
 	{
 		if(args.length < 2)
 		{
-			System.out.println("Usage: SMP [input.txt] [m/w]");
+			System.out.println("Usage: main.java.SMP.SMP [input.txt] [m/w]");
 			return;
 		}
 		String inputFile = args[0];
