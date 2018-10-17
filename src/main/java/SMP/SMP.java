@@ -24,7 +24,7 @@ public class SMP {
 		printEngagements(engagements);
 	}
 
-	private static void printEngagements(Map<Integer,Integer> map)
+	public static void printEngagements(Map<Integer,Integer> map)
 	{
 		Set<Integer> women = map.keySet();
 		for(Integer woman : women)
@@ -55,7 +55,7 @@ public class SMP {
 		}
 		return SMP(men,women);
 	}
-
+	// Returns map of engagements
 	private static Map<Integer,Integer> SMP(int[][] men, int[][] women)
 	{
 		Queue<Integer> freeMen = new LinkedList<>();
