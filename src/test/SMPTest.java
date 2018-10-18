@@ -141,9 +141,9 @@ public class SMPTest {
 				{
 					String s = matcher.group();
 					if(i == null){
-						i = Integer.parseInt(s);
+						i = Integer.parseInt(s) - 1;
 					}else {
-						j = Integer.parseInt(s);
+						j = Integer.parseInt(s) - 1;
 					}
 				}
 				if(engagements.get(j) != i)
