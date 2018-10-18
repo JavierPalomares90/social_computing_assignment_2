@@ -312,17 +312,17 @@ Modify the Gale-Shapely stable marriage algorithm with a constraint that the $(m
 \hspace*{7mm} 4. $m$ proposes to his most preferred woman $w$ that he has not already proposed to, and is not $w*$ \\
 \hspace*{7mm} 5. if $w$ is free: \\
 \hspace*{14mm} 6. $w$ accepts proposal (assign $m$ to $w$) \\ 
-\hspace*{7mm} 7. else: // $w$ is already engaged to $m′$ \\
-\hspace*{14mm} 8. if $wrank[w][m] > wrank[w][m′]$: // $w$ prefers $m′$ \\
-\hspace*{21mm} 9. add $m$ back to freelist // reject $m$; $w$ still engaged to $m′$ \\
+\hspace*{7mm} 7. else: // $w$ is already engaged to $m'$ \
+\hspace*{14mm} 8. if $wrank[w][m] > wrank[w][m']$: // $w$ prefers $m'$ \\
+\hspace*{21mm} 9. add $m$ back to freelist // reject $m$; $w$ still engaged to $m'$ \\
 \hspace*{14mm} 10. else: \\
-\hspace*{21mm} 11. add $m′$ back to the freelist // reject $m′$ \\ 
+\hspace*{21mm} 11. add $m'$ back to the freelist // reject $m'$ \\ 
 \hspace*{21mm} 12. $w$ gets engaged to $m$ \\
 13. for each $(m, w)$ marriage assignment that isnot $(m*, w*)$ \\
 \hspace*{14mm} 14. if $mrank[m][w] > mrank[m][w*]$ and $wrank[w*][m*] > wrank[w*][m]$: \\
-\hspace*{21mm} 15. Print blocking pair found, then exit \\
+\hspace*{21mm} 15. Print blocking pair found so no stable matching exists, then exit \\
 \hspace*{14mm} 16. else: \\
-\hspace*{21mm} 17. Continue through for loop to next marriage assignment \\ 
+\hspace*{21mm} 17. Continue through for loop to next marriage assignment (m,w) \\ 
 18. Print stable marriage exists with $m*$ assigned to $w*$
 
 \subsection{Answer 3b}
