@@ -198,6 +198,29 @@ at $(x_1,x_2) = (0,3)$
 
 Dual Problem: \\
 
+max $2x_{1} + 6x_{2}$ \\
+subject to\\
+$4x_{1} + x_2{2} \leq 8 $\\
+$4_{1} + 2x_2{2} \leq 6 $\\
+$x1,x2 \geq 0 $\\
+is equivalent to\\
+
+min $-2x_{1} - 6x_{2}$ \\
+subject to\\
+$4x_{1} + x_2{2} \leq 8 $\\
+$4_{1} + 2x_2{2} \leq 6 $\\
+$x1,x2 \geq 0 $\\
+
+By the appendix in the duality notes, the dual is given by\\
+
+max $8y'_{1} + 6y'_{2}$\\
+subject to\\
+$4y'_{1} + y'_{2} \leq -2$,\\
+$y'_{1} + 2y'_{2} \leq -6$,\\
+$y'_{1}, y'_{2} \geq 0$,\\
+then by letting $y_{1} = -y'_{1},y_{2} = -y'_{2}$
+we arrive at 
+
 min $8y_{1} + 6y_{2}$\\
 subject to\\
 $4y_{1} + y_{2} \geq 2$,\\
@@ -269,6 +292,7 @@ $y_{1}, y_{2} \geq 0$,\\
 
 \subsection{Answer 1f}
 
+Again by the simplex method we only need to check the value at the vertices of the feasible space.
 The optimum solution for the Dual objective function is $(y_{1}, y_{2}) = (0, 3)$, which gives an optimum value of 18 (same as for the primal).
 
 \section{Question 2}
@@ -294,7 +318,8 @@ Suppose that you are given an instance of a stable marriage problem, i.e., the o
 
 \subsection{Answer 3a}
 
-Modify the Gale-Shapely stable marriage algorithm with a constraint that the $(m*,w*)$ couple is already assigned (married), and check for potential blocking pairs with already assigned ($m*, w*$) before each new couple engagement. This will be accomplished done by having the woman reject any man that would create a blocking pair with ($m*, w*$).  If there is at least one free man left that has no else to propose to, then no stable marriage set exists with the already assigned ($m*, w*$) couple. 
+Modify the Gale-Shapely stable marriage algorithm with a constraint that the $(m*,w*)$ couple is already assigned (married), and check for potential blocking pairs with already assigned ($m*, w*$) before each new couple engagement.
+ This will be accomplished by having the woman reject any man that would create a blocking pair with ($m*, w*$).  If there is at least one free man left that has no else to propose to, then no stable marriage set exists with the already assigned ($m*, w*$) couple. 
 
 \textbf{Inputs}:\\
 1. $mPref$: data structure containing preferences for each man \\
@@ -330,7 +355,8 @@ Modify the Gale-Shapely stable marriage algorithm with a constraint that the $(m
 
 \subsection{Answer 3b}
 
-The certificate that can be shown to prove that there is no stable marriage with the ($m, w$) pair is to show the list of all possible stable marriages (which can be represented in a hasse diagram) and show that the ($m, w$) is not included in any of them. \\  
+The certificate that can be shown to prove that there is no stable marriage with the ($m, w$) pair is to show the list of all possible stable marriages (which can be represented in a hasse diagram) and show that the pair 
+($m, w$) is not included in any of them. \\  
 
 \subsection{Answer 3c}
 
