@@ -189,7 +189,10 @@ $(2, 0)$
 
 \subsection{Answer 1c}
 
-The optimal value of the Primal objective function is 18.
+By the simplex algorithm the optimal value is at one of the vertices. 
+Evaluating the objective function at each of the vertices, we find the
+the optimal value of the Primal objective function is 18 
+at $(x_1,x_2) = (0,3)$
 
 \subsection{Answer 1d}
 
@@ -199,7 +202,7 @@ min $8y_{1} + 6y_{2}$\\
 subject to\\
 $4y_{1} + y_{2} \geq 2$,\\
 $y_{1} + 2y_{2} \geq 6$,\\
-$y_{1}, y_{2} \geq 0$,
+$y_{1}, y_{2} \geq 0$,\\
 
 \subsection{Answer 1e}
 
@@ -275,11 +278,12 @@ Show that the man-oriented Gale-Shapley algorithm gives the woman-pessimal stabl
 
 \textbf{Proof} by contradiction:
 
-Let $M = \{ \ldots, (m, w), \ldots \}$ be the set male optimal marriages from the output of the male-oriented Gale-Shapley algorithm. 
+Let $M = \{ \ldots, (m, w), \ldots \}$ be the set of male optimal marriages from the output of the male-oriented Gale-Shapley algorithm. 
 
-Suppose that there exists a stable that is not woman pessimal, represented by $M' = \{ \ldots, (m', w), \ldots, (m, w'), \ldots\}$ such that $m$ is not the pessimal choice for $w$. In this scenario , $w$ prefers $m$ over $m'$. However, if the stable marriage is also male optimal, then $m$ prefers $w$ over $w'$. 
+Suppose that there exists a stable matching that is not woman pessimal, represented by $M' = \{ \ldots, (m', w), \ldots, (m, w'), \ldots\}$ such that $m$ is not the pessimal choice for $w$. In this scenario , $w$ prefers $m$ over $m'$. However, if the stable marriage is also male optimal, then $m$ prefers $w$ over $w'$. 
 
 The above case is a contradiction because this creates a blocking pair, which proves that such a marriage $M'$ is not stable. Therefore, a male optimal pairing must be woman pessimal.
+
 
 \section{Question 3}
 Suppose that you are given an instance of a stable marriage problem, i.e., the ordered lists of men preferences and the ordered list of women preferences.\\
