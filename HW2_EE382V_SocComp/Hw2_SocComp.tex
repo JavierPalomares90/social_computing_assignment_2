@@ -131,7 +131,6 @@ $x_{1}, x_{2} \geq 0$,\\
 
 \subsection{Answer 1a}
 
-%\iffalse
 \begin{tikzpicture}
     \begin{axis}[
         axis on top, smooth,
@@ -179,7 +178,6 @@ $x_{1}, x_{2} \geq 0$,\\
         (point1)--(point2)--(point3)--(point4)--(point1);
     \end{axis}
 \end{tikzpicture}
-%\fi
 
 \subsection{Answer 1b}
 
@@ -201,11 +199,10 @@ min $8y_{1} + 6y_{2}$\\
 subject to\\
 $4y_{1} + y_{2} \geq 2$,\\
 $y_{1} + 2y_{2} \geq 6$,\\
-$y_{1}, y_{2} \geq 0$,\\
+$y_{1}, y_{2} \geq 0$,
 
 \subsection{Answer 1e}
 
-%\iffalse
 \begin{tikzpicture}
     \begin{axis}[
         axis on top, smooth,
@@ -266,7 +263,6 @@ $y_{1}, y_{2} \geq 0$,\\
         (point2)--(point3)--(point4)--(point5)--(point6)--(point2);
     \end{axis}
 \end{tikzpicture}
-%\fi
 
 \subsection{Answer 1f}
 
@@ -294,41 +290,47 @@ Suppose that you are given an instance of a stable marriage problem, i.e., the o
 
 \subsection{Answer 3a}
 
-Modify the Gale-Shapely stable marriage algorithm with a constraint that the $(m*,w*)$ is already assigned (married).
+Modify the Gale-Shapely stable marriage algorithm with a constraint that the $(m*,w*)$ couple is already assigned (married), and check for potential blocking pairs with already assigned ($m*, w*$) before each new couple engagement. This will be accomplished done by having the woman reject any man that would create a blocking pair with ($m*, w*$).  If there is at least one free man left that has no else to propose to, then no stable marriage set exists with the already assigned ($m*, w*$) couple. 
 
 \textbf{Inputs}:\\
 1. $mPref$: data structure containing preferences for each man \\
 2. $wPref$: data structure containing preferences for each woman \\
-3. $mrank$: where $mrank[i][j]$ indicates the rank of woman $j$ for man $i$; higher preference correlates to lower rank \\
-4. $wrank$: where $wrank[i][j]$ indicates the rank of man $j$ for woman $i$; higher preference correlates to lower rank \\
+3. $m*$: The man that has already been coupled with $w*$ \\
+4. $w*$: The woman that has already been couple with $m*$ \\
+5. $mrank$: where $mrank[i][j]$ indicates the rank of woman $j$ for man $i$; higher preference correlates to lower rank \\
+6. $wrank$: where $wrank[i][j]$ indicates the rank of man $j$ for woman $i$; higher preference correlates to lower rank \\
 
 \textbf{Algorithm}:\\
 1. freelist = list of men who are free (initially has all men except $m*$) \\
 2. while (freelist is not empty): \\
 \hspace*{7mm} 3. choose some man $m$ from freelist \\
-\hspace*{7mm} 4. $m$ proposes to his most preferred woman $w$ that he has not already proposed to, and is not $w*$ \\
-\hspace*{7mm} 5. if $w$ is free: \\
-\hspace*{14mm} 6. $w$ accepts proposal (assign $m$ to $w$) \\ 
-\hspace*{7mm} 7. else: // $w$ is already engaged to $m′$ \\
-\hspace*{14mm} 8. if $wrank[w][m] > wrank[w][m′]$: // $w$ prefers $m′$ \\
-\hspace*{21mm} 9. add $m$ back to freelist // reject $m$; $w$ still engaged to $m′$ \\
-\hspace*{14mm} 10. else: \\
-\hspace*{21mm} 11. add $m′$ back to the freelist // reject $m′$ \\ 
-\hspace*{21mm} 12. $w$ gets engaged to $m$ \\
-13. for each $(m, w)$ marriage assignment that isnot $(m*, w*)$ \\
-\hspace*{14mm} 14. if $mrank[m][w] > mrank[m][w*]$ and $wrank[w*][m*] > wrank[w*][m]$: \\
-\hspace*{21mm} 15. Print blocking pair found, then exit \\
-\hspace*{14mm} 16. else: \\
-\hspace*{21mm} 17. Continue through for loop to next marriage assignment \\ 
-18. Print stable marriage exists with $m*$ assigned to $w*$
+\hspace*{7mm} 3. if $m$ has already attempted a proposal to every woman except w* \\
+\hspace*{14mm} 4. Print no stable marriage exists with given ($m*, w*$) assignment \\
+\hspace*{14mm} 5. EXIT \\
+\hspace*{7mm} 6. $m$ proposes to his most preferred woman $w$ that he has not already proposed to, who is not $w*$ \\
+\hspace*{7mm} 7. if $w$ is free: \\
+\hspace*{14mm} 8. if ($mrank[m][w] > mrank[m][w*]$) and ($wrank[w*][m*] > wrank[w*][m]$): //blocking pair \\
+\hspace*{21mm} 9. add $m$ back to freelist // reject $m$; $w$ still free \\ 
+\hspace*{14mm} 10. else: // $(m, w)$ is will not create a blocking pair \\
+\hspace*{21mm} 11. $w$ accepts proposal (assign $m$ to $w$) \\ 
+\hspace*{7mm} 12. else: // $w$ is already engaged to $m'$ \\
+\hspace*{14mm} 13. if $wrank[w][m] > wrank[w][m']$: // $w$ prefers $m'$ \\
+\hspace*{21mm} 14. add $m$ back to freelist // reject $m$; $w$ still engaged to $m'$ \\
+\hspace*{14mm} 15. else: \\
+\hspace*{21mm} 16. if ($mrank[m][w] > mrank[m][w*]$) and ($wrank[w*][m*] > wrank[w*][m]$): // blocking \\
+\hspace*{28mm} 17. add $m$ back to freelist // reject $m$; $w$ still engaged to $m'$ \\ 
+\hspace*{21mm} 18. else: // ($m, w$) is will not create a blocking pair \\
+\hspace*{28mm} 19. add $m'$ back to the freelist // reject $m'$ \\ 
+\hspace*{28mm} 20. $w$ gets engaged to $m$ \\
+21. Print stable marriage exists given $(m*, w*)$ assignment
 
 \subsection{Answer 3b}
 
-The certificate that can be shown to prove that their is no stable marriage with the ($m, w$) pair is to show that their exists a blocking pair, which is couple pairing ($m', w'$) in which  $m$ prefers $w'$ to $w$, and $w'$ prefers $m$ to $m'$.  
+The certificate that can be shown to prove that there is no stable marriage with the ($m, w$) pair is to show the list of all possible stable marriages (which can be represented in a hasse diagram) and show that the ($m, w$) is not included in any of them.  
 
 \subsection{Answer 3c}
 
-
+The certificate that can be shown to prove that there is a stable marriage with the ($m, w$) pair is to show one instance of any stable marriage set that includes the ($m, w)$ pair. 
 
 \end{document}
 
