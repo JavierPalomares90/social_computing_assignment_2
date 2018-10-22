@@ -355,12 +355,12 @@ Modify the Gale-Shapely stable marriage algorithm with a constraint that the $(m
 
 \subsection{Answer 3b}
 
-The certificate that can be shown to prove that there is no stable marriage with the ($m, w$) pair is to show the list of all possible stable marriages (which can be represented in a hasse diagram) and show that the pair 
-($m, w$) is not included in any of them. \\  
+The certificate that can be shown to prove that there is no stable marriage with the ($m, w$) pair is to show the list of all possible stable marriages and show that the ($m, w$) is not included in any of them. As illustrated in the hasse diagram from the last lecture's scribe notes, the Gale-Shapely algorithm only produces the optimal/pessimal stable marriage sets at the top and bottom points in the hasse diagram region of all stable matchings. However, all possible stable marriage are required to show that the ($m, w$) is not a part of any of them, and therefore proves that no stable marriage set exists with that pair.\\
+
+\includegraphics[width=\textwidth]{Hasse_Diagram_All_Possible_Stable_Matching}
 
 \subsection{Answer 3c}
 
-The certificate that can be shown to prove that there is a stable marriage with the ($m, w$) pair is to show one instance of any stable marriage set that includes the ($m, w$) pair. 
+The certificate that can be shown to prove that there is a stable marriage with the ($m, w$) pair is to show one instance of any stable marriage set that includes the ($m, w$) pair. Such a stable marriage set could be produced using the algorithm produced in answer 3a above. A Hasse diagram, as described in answer 3b above, could be used as a visual representation of all stable marriage sets. If at least one of them includes the ($m, w$) pair, it could be used as the certificate to show that a stable marriage with that pair exists. \\
 
 \end{document}
-
